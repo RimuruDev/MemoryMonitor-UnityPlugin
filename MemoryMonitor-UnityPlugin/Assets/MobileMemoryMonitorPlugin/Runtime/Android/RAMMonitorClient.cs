@@ -9,37 +9,37 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android
         RAMUsageNormal = 1,
         LowRAMDetected = 2
     }
-    
-    public class StorageMonitorProxy
+
+    public class RAMMonitorProxy
     {
         private readonly RAMMonitorClient ramMonitorClient;
 
-        internal StorageMonitorProxy(RAMMonitorClient ramMonitorClient)
+        internal RAMMonitorProxy(RAMMonitorClient ramMonitorClient)
         {
             this.ramMonitorClient = ramMonitorClient;
         }
 
-        public long GetAvailableRAM()
+        public virtual long GetAvailableRAM()
         {
             return ramMonitorClient.GetAvailableRAM(MMMJavaBridge.GetContext());
         }
 
-        public long GetTotalRAM()
+        public virtual long GetTotalRAM()
         {
             return ramMonitorClient.GetTotalRAM(MMMJavaBridge.GetContext());
         }
 
-        public float GetAvailableRAMPercentage()
+        public virtual float GetAvailableRAMPercentage()
         {
             return ramMonitorClient.GetAvailableRAMPercentage(MMMJavaBridge.GetContext());
         }
 
-        public bool IsLowRAM()
+        public virtual bool IsLowRAM()
         {
             return ramMonitorClient.IsLowRAM(MMMJavaBridge.GetContext());
         }
 
-        public SuggestMemoryCleanupResponse SuggestMemoryCleanup()
+        public virtual SuggestMemoryCleanupResponse SuggestMemoryCleanup()
         {
             var info = ramMonitorClient.SuggestMemoryCleanup(MMMJavaBridge.GetContext());
 
@@ -63,12 +63,18 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android
 
         public long GetAvailableRAM(AndroidJavaObject context)
         {
-            return context.Call<long>(GET_AVAILABLE_RAM);
+            return MMMJavaBridge.CallStatic<long>(
+                MMMJavaBridge.RAM_MONITOR,
+                GET_AVAILABLE_RAM,
+                context);
         }
 
         public long GetTotalRAM(AndroidJavaObject context)
         {
-            return context.Call<long>(GET_TOTAL_RAM);
+            return MMMJavaBridge.CallStatic<long>(
+                MMMJavaBridge.RAM_MONITOR,
+                GET_TOTAL_RAM,
+                context);
         }
 
         public float GetAvailableRAMPercentage(AndroidJavaObject context)
@@ -77,12 +83,18 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android
             // 0-100
             // Or -> if total ram 0 -> return 0
 
-            return context.Call<float>(GET_AVAILABLE_RAM_PERCENTAGE);
+            return MMMJavaBridge.CallStatic<float>(
+                MMMJavaBridge.RAM_MONITOR,
+                GET_AVAILABLE_RAM_PERCENTAGE,
+                context);
         }
 
         public bool IsLowRAM(AndroidJavaObject context)
         {
-            return context.Call<bool>(IS_LOW_RAM);
+            return MMMJavaBridge.CallStatic<bool>(
+                MMMJavaBridge.RAM_MONITOR,
+                IS_LOW_RAM,
+                context);
         }
 
         public string SuggestMemoryCleanup(AndroidJavaObject context)
@@ -97,7 +109,10 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android
             //
             // return "RAM usage is within acceptable limits.";
 
-            return context.Call<string>(SUGGEST_MEMORY_CLEANUP);
+            return MMMJavaBridge.CallStatic<string>(
+                MMMJavaBridge.RAM_MONITOR,
+                SUGGEST_MEMORY_CLEANUP,
+                context);
         }
     }
 }
