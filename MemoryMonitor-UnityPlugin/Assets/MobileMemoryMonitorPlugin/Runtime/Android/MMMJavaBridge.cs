@@ -35,31 +35,4 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android
             return plugin.CallStatic<TResult>(methodName, args);
         }
     }
-
-    internal class RAMMonitorClient
-    {
-    }
-
-    internal class SDKMonitorClient
-    {
-        // Methods ===
-        private const string ReadSDKVersion = "ReadSDKVersion";
-        private const string HandleFeatureSupport = "HandleFeatureSupport";
-
-        public string GetSDKVersion()
-        {
-            return MMMJavaBridge.CallStatic<string>(ReadSDKVersion);
-        }
-
-        public int CheckFeatureSupport(int requiredApiLevel)
-        {
-            // ERROR_LOW_API = -1
-            // FEATURE_SUPPORTED = 0
-            return MMMJavaBridge.CallStatic<int>(HandleFeatureSupport, requiredApiLevel);
-        }
-    }
-
-    internal class StorageMonitorClient
-    {
-    }
 }
