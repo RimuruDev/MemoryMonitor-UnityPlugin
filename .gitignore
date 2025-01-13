@@ -10,3 +10,6 @@ MemoryMonitor-UnityPlugin/Assembly-CSharp-firstpass.csproj
 MemoryMonitor-UnityPlugin/Assembly-CSharp.csproj
 /MemoryMonitor-UnityPlugin/.idea
 /MemoryMonitor-UnityPlugin/.idea
+/MemoryMonitor-UnityPlugin/obj
+MemoryMonitor-UnityPlugin/obj/Debug/Assembly-CSharp-firstpass.csproj.AssemblyReference.cache
+MemoryMonitor-UnityPlugin/MemoryMonitor-UnityPlugin.sln
