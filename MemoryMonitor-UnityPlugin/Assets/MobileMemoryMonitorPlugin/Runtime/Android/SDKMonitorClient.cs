@@ -17,7 +17,7 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android
             this.sdkMonitorClient = sdkMonitorClient;
         }
 
-        public virtual string GetSDKVersion()
+        public virtual int GetSDKVersion()
         {
             return sdkMonitorClient.GetSDKVersion();
         }
@@ -44,9 +44,9 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android
         private const string READ_SDK_VERSION = "ReadSDKVersion";
         private const string HANDLE_FEATURE_SUPPORT = "HandleFeatureSupport";
 
-        public string GetSDKVersion()
+        public int GetSDKVersion()
         {
-            return MMMJavaBridge.CallStatic<string>(
+            return MMMJavaBridge.CallStatic<int>(
                 MMMJavaBridge.SDK_MONITOR,
                 READ_SDK_VERSION);
         }

@@ -74,7 +74,7 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime
         /// Метод для получения версии SDK.
         /// </summary>
         /// <returns></returns>
-        public string GetSDKVersion()
+        public int GetSDKVersion()
         {
             return sdkMonitorProxy.GetSDKVersion();
         }

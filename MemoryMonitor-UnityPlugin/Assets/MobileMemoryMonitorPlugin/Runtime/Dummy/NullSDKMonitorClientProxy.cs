@@ -12,7 +12,7 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime
         public sealed override FeatureSupportResponse HandleFeatureSupport(int requiredApiLevel) =>
             FeatureSupportResponse.Unknown;
 
-        public sealed override string GetSDKVersion() =>
-            Application.version;
+        public sealed override int GetSDKVersion() =>
+            -1;
     }
 }
