@@ -7,8 +7,8 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android
         LowApiLevel = 1,
         FeatureSupport = 2,
     }
-    
-    internal class SDKMonitorClientProxy
+
+    public class SDKMonitorClientProxy
     {
         private readonly SDKMonitorClient sdkMonitorClient;
 
@@ -17,12 +17,12 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android
             this.sdkMonitorClient = sdkMonitorClient;
         }
 
-        public string GetSDKVersion()
+        public virtual string GetSDKVersion()
         {
             return sdkMonitorClient.GetSDKVersion();
         }
 
-        public FeatureSupportResponse HandleFeatureSupport(int requiredApiLevel)
+        public virtual FeatureSupportResponse HandleFeatureSupport(int requiredApiLevel)
         {
             const int ERROR_LOW_API = -1;
             const int FEATURE_SUPPORTED = 0;
@@ -46,7 +46,9 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android
 
         public string GetSDKVersion()
         {
-            return MMMJavaBridge.CallStatic<string>(READ_SDK_VERSION);
+            return MMMJavaBridge.CallStatic<string>(
+                MMMJavaBridge.SDK_MONITOR,
+                READ_SDK_VERSION);
         }
 
         public int HandleFeatureSupport(int requiredApiLevel)
@@ -54,7 +56,11 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android
             // Response:
             // ERROR_LOW_API = -1
             // FEATURE_SUPPORTED = 0
-            return MMMJavaBridge.CallStatic<int>(HANDLE_FEATURE_SUPPORT, requiredApiLevel);
+            
+            return MMMJavaBridge.CallStatic<int>(
+                MMMJavaBridge.SDK_MONITOR,
+                HANDLE_FEATURE_SUPPORT,
+                requiredApiLevel);
         }
     }
 }
