@@ -8,8 +8,7 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.ViewProvider
         [Header("Настройки обновления")]
         public MemoryMonitorUpdateRate updateRate = MemoryMonitorUpdateRate.UpdateEvery1Second;
 
-        [Header("События")]
-        public MemoryMonitorEvent OnLowMemoryEvent;
+        [Header("События")] public MemoryMonitorEvent OnLowMemoryEvent;
         public MemoryMonitorLongEvent OnAvailableRAMUpdated;
         public MemoryMonitorFloatEvent OnAvailableRAMPercentageUpdated;
         public MemoryMonitorSuggestEvent OnSuggestMemoryCleanup;
@@ -23,11 +22,9 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.ViewProvider
             memoryMonitor = MemoryMonitor.Instance;
             UpdateIntervalFromRate();
         }
-        
-        private void UpdateIntervalFromRate()
-        {
+
+        private void UpdateIntervalFromRate() => 
             updateInterval = (int)updateRate;
-        }
 
         private void Update()
         {
@@ -43,27 +40,23 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.ViewProvider
             }
         }
 
-        private bool HasSubscribers()
-        {
-            return OnLowMemoryEvent.GetPersistentEventCount() > 0 ||
-                   OnAvailableRAMUpdated.GetPersistentEventCount() > 0 ||
-                   OnAvailableRAMPercentageUpdated.GetPersistentEventCount() > 0 ||
-                   OnSuggestMemoryCleanup.GetPersistentEventCount() > 0;
-        }
+        private bool HasSubscribers() =>
+            OnLowMemoryEvent.GetPersistentEventCount() > 0 ||
+            OnAvailableRAMUpdated.GetPersistentEventCount() > 0 ||
+            OnAvailableRAMPercentageUpdated.GetPersistentEventCount() > 0 ||
+            OnSuggestMemoryCleanup.GetPersistentEventCount() > 0;
 
         private void FetchMemoryData()
         {
             if (memoryMonitor.IsLowRAM())
-            {
                 OnLowMemoryEvent?.Invoke();
-            }
 
             var availableRAM = memoryMonitor.GetAvailableRAM();
             OnAvailableRAMUpdated?.Invoke(availableRAM);
 
             var ramPercentage = memoryMonitor.GetAvailableRAMPercentage();
             OnAvailableRAMPercentageUpdated?.Invoke(ramPercentage);
-            
+
             var suggestMemoryCleanup = memoryMonitor.SuggestMemoryCleanup();
             OnSuggestMemoryCleanup?.Invoke(suggestMemoryCleanup);
         }

@@ -4,15 +4,11 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android.SDK
     {
         private readonly SDKMonitorClient sdkMonitorClient;
 
-        internal SDKMonitorClientProxy(SDKMonitorClient sdkMonitorClient)
-        {
+        internal SDKMonitorClientProxy(SDKMonitorClient sdkMonitorClient) =>
             this.sdkMonitorClient = sdkMonitorClient;
-        }
 
-        public virtual int GetSDKVersion()
-        {
-            return sdkMonitorClient.GetSDKVersion();
-        }
+        public virtual int GetSDKVersion() =>
+            sdkMonitorClient.GetSDKVersion();
 
         public virtual FeatureSupportResponse HandleFeatureSupport(int requiredApiLevel)
         {

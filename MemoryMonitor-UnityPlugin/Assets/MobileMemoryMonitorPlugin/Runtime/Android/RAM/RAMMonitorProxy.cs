@@ -4,30 +4,20 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android.RAM
     {
         private readonly RAMMonitorClient ramMonitorClient;
 
-        internal RAMMonitorProxy(RAMMonitorClient ramMonitorClient)
-        {
+        internal RAMMonitorProxy(RAMMonitorClient ramMonitorClient) =>
             this.ramMonitorClient = ramMonitorClient;
-        }
 
-        public virtual long GetAvailableRAM()
-        {
-            return ramMonitorClient.GetAvailableRAM(MMJavaBridge.GetContext());
-        }
+        public virtual long GetAvailableRAM() =>
+            ramMonitorClient.GetAvailableRAM(MMJavaBridge.GetContext());
 
-        public virtual long GetTotalRAM()
-        {
-            return ramMonitorClient.GetTotalRAM(MMJavaBridge.GetContext());
-        }
+        public virtual long GetTotalRAM() =>
+            ramMonitorClient.GetTotalRAM(MMJavaBridge.GetContext());
 
-        public virtual float GetAvailableRAMPercentage()
-        {
-            return ramMonitorClient.GetAvailableRAMPercentage(MMJavaBridge.GetContext());
-        }
+        public virtual float GetAvailableRAMPercentage() =>
+            ramMonitorClient.GetAvailableRAMPercentage(MMJavaBridge.GetContext());
 
-        public virtual bool IsLowRAM()
-        {
-            return ramMonitorClient.IsLowRAM(MMJavaBridge.GetContext());
-        }
+        public virtual bool IsLowRAM() =>
+            ramMonitorClient.IsLowRAM(MMJavaBridge.GetContext());
 
         public virtual SuggestMemoryCleanupResponse SuggestMemoryCleanup()
         {

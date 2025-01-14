@@ -56,10 +56,8 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android
         /// <param name="javaObject">Java-объект.</param>
         /// <param name="methodName">Имя метода.</param>
         /// <param name="args">Аргументы метода.</param>
-        public static void Call(AndroidJavaObject javaObject, string methodName, params object[] args)
-        {
+        public static void Call(AndroidJavaObject javaObject, string methodName, params object[] args) => 
             javaObject.Call(methodName, args);
-        }
 
         /// <summary>
         /// Вызывает нестатический метод Java-объекта и возвращает результат.
@@ -68,9 +66,7 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android
         /// <param name="javaObject">Java-объект.</param>
         /// <param name="methodName">Имя метода.</param>
         /// <param name="args">Аргументы метода.</param>
-        public static TResult Call<TResult>(AndroidJavaObject javaObject, string methodName, params object[] args)
-        {
-            return javaObject.Call<TResult>(methodName, args);
-        }
+        public static TResult Call<TResult>(AndroidJavaObject javaObject, string methodName, params object[] args) => 
+            javaObject.Call<TResult>(methodName, args);
     }
 }
