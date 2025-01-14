@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using AbyssMoth.MobileMemoryMonitorPlugin.Runtime;
 using TMPro;
 using UnityEngine;
@@ -7,12 +8,13 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Example.Codebase
 {
     public class MemoryMonitorView : MonoBehaviour
     {
-        public MemoryMonitor memoryMonitorManager;
         [SerializeField] private TMP_Text ramInfoText;
+        private MemoryMonitor memoryMonitorManager;
 
         private void Awake()
         {
             ramInfoText.text = "Awake";
+            memoryMonitorManager= MemoryMonitor.Instance;
         }
 
         private void Start()
@@ -34,7 +36,7 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Example.Codebase
                     var v = memoryMonitorManager.GetSDKVersion();
                     var handle = memoryMonitorManager.HandleFeatureSupport(16);
 
-                    ramInfoText.text = $"RAM: {availableRAM} / {totalRAM} ({ramPercentage}%)\n IsLowRAM: {isLowRam}\n Suggest: {suggest.ToString()}\nVersion: {v}\nhandle-16: {handle}";
+                    ramInfoText.text = $"RAM: {availableRAM} / {totalRAM} ({ramPercentage}%)\nIsLowRAM: {isLowRam}\nSuggest: {suggest.ToString()}\nVersion: {v}\nhandle-16: {handle}";
                 }
                 else
                 {

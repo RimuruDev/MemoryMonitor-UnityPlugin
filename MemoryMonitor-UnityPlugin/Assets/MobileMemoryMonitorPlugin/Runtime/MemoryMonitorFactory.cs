@@ -6,9 +6,9 @@ using AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android;
 
 namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime
 {
-    public class MMMFactory
+    public static class MemoryMonitorFactory
     {
-        public RAMMonitorProxy CreateRAMMonitorProxy()
+        public static RAMMonitorProxy CreateRAMMonitorProxy()
         {
 #if UNITY_ANDROID_RUNTIME
             var client = new RAMMonitorClient();
@@ -18,7 +18,7 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime
 #endif
         }
 
-        public SDKMonitorClientProxy CreateSDKMonitorProxy()
+        public static SDKMonitorClientProxy CreateSDKMonitorProxy()
         {
 #if UNITY_ANDROID_RUNTIME
             var client = new SDKMonitorClient();

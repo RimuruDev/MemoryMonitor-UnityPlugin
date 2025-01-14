@@ -3,80 +3,78 @@ using UnityEngine;
 
 namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime
 {
-    public class MemoryMonitor : MonoBehaviour
+    /// <summary>
+    /// Главный класс для работы с мониторингом памяти и SDK. Предоставляет Singleton API для доступа к функционалу.
+    /// </summary>
+    public class MemoryMonitor
     {
-        private RAMMonitorProxy ramMonitorProxy;
-        private SDKMonitorClientProxy sdkMonitorProxy;
+        private static MemoryMonitor instance;
 
-        private void Awake()
+        private readonly RAMMonitorProxy ramMonitorProxy;
+        private readonly SDKMonitorClientProxy sdkMonitorProxy;
+
+        /// <summary>
+        /// Приватный конструктор для инициализации фабрики и прокси.
+        /// </summary>
+        private MemoryMonitor()
         {
-            var factory = new MMMFactory();
-            ramMonitorProxy = factory.CreateRAMMonitorProxy();
-            sdkMonitorProxy = factory.CreateSDKMonitorProxy();
+            ramMonitorProxy = MemoryMonitorFactory.CreateRAMMonitorProxy();
+            sdkMonitorProxy = MemoryMonitorFactory.CreateSDKMonitorProxy();
         }
 
         /// <summary>
-        /// Метод для получения доступной оперативной памяти.
+        /// Статическое свойство для доступа к Singleton-экземпляру MemoryMonitor.
         /// </summary>
-        /// <returns></returns>
-        public long GetAvailableRAM()
-        {
-            return ramMonitorProxy.GetAvailableRAM();
-        }
+        public static MemoryMonitor Instance =>
+            instance ??= new MemoryMonitor();
 
         /// <summary>
-        /// Метод для получения общей оперативной памяти.
+        /// Сбрасывает статические данные при перезагрузке домена.
         /// </summary>
-        /// <returns></returns>
-        public long GetTotalRAM()
-        {
-            return ramMonitorProxy.GetTotalRAM();
-        }
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStatics() =>
+            instance = null;
 
         /// <summary>
-        /// Метод для получения процентного значения доступной памяти.
+        /// Получает доступную оперативную память в байтах.
         /// </summary>
-        /// <returns></returns>
-        public float GetAvailableRAMPercentage()
-        {
-            return ramMonitorProxy.GetAvailableRAMPercentage();
-        }
+        public long GetAvailableRAM() =>
+            ramMonitorProxy.GetAvailableRAM();
 
         /// <summary>
-        /// Метод для проверки, низкая ли память.
+        /// Получает общую оперативную память в байтах.
         /// </summary>
-        /// <returns></returns>
-        public bool IsLowRAM()
-        {
-            return ramMonitorProxy.IsLowRAM();
-        }
+        public long GetTotalRAM() =>
+            ramMonitorProxy.GetTotalRAM();
 
         /// <summary>
-        /// Метод для рекомендации очистки памяти.
+        /// Получает процент доступной оперативной памяти.
         /// </summary>
-        /// <returns></returns>
-        public SuggestMemoryCleanupResponse SuggestMemoryCleanup()
-        {
-            return ramMonitorProxy.SuggestMemoryCleanup();
-        }
+        public float GetAvailableRAMPercentage() =>
+            ramMonitorProxy.GetAvailableRAMPercentage();
 
         /// <summary>
-        /// Метод для проверки уровня поддержки SDK.
+        /// Проверяет, находится ли устройство в состоянии низкого объёма оперативной памяти.
         /// </summary>
-        /// <param name="requiredApiLevel"></param>
-        /// <returns></returns>
-        public FeatureSupportResponse HandleFeatureSupport(int requiredApiLevel)
-        {
-            return sdkMonitorProxy.HandleFeatureSupport(requiredApiLevel);
-        }
+        public bool IsLowRAM() =>
+            ramMonitorProxy.IsLowRAM();
 
         /// <summary>
-        /// Метод для получения версии SDK.
+        /// Предоставляет рекомендации по очистке памяти.
         /// </summary>
-        /// <returns></returns>
-        public int GetSDKVersion()
-        {
-            return sdkMonitorProxy.GetSDKVersion();
-        }
+        public SuggestMemoryCleanupResponse SuggestMemoryCleanup() =>
+            ramMonitorProxy.SuggestMemoryCleanup();
+
+        /// <summary>
+        /// Проверяет поддержку определённого уровня API устройства.
+        /// </summary>
+        public FeatureSupportResponse HandleFeatureSupport(int requiredApiLevel) =>
+            sdkMonitorProxy.HandleFeatureSupport(requiredApiLevel);
+
+        /// <summary>
+        /// Получает версию SDK устройства.
+        /// </summary>
+        public int GetSDKVersion() =>
+            sdkMonitorProxy.GetSDKVersion();
     }
 }

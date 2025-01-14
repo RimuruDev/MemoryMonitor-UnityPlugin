@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
 
 namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android
 {
     public enum SuggestMemoryCleanupResponse : byte
     {
-        // NOTE: Неизвестная строка.
+        /// <summary>
+        /// NOTE: Неизвестная строка.
+        /// </summary>
         Unknown = 0,
         RAMUsageNormal = 1,
         LowRAMDetected = 2
