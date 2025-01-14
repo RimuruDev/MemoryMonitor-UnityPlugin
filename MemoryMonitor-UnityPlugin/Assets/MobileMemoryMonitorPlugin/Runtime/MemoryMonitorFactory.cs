@@ -2,7 +2,9 @@
 #define UNITY_ANDROID_RUNTIME
 #endif
 
-using AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android;
+using AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Dummy;
+using AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android.RAM;
+using AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android.SDK;
 
 namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime
 {

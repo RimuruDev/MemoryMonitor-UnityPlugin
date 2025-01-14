@@ -1,12 +1,11 @@
-using AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android;
+using AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android.RAM;
+using static AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android.RAM.SuggestMemoryCleanupResponse;
 
-namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime
+namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Dummy
 {
     public class NullRAMMonitorProxy : RAMMonitorProxy
     {
-        public NullRAMMonitorProxy() : base(null)
-        {
-        }
+        public NullRAMMonitorProxy() : base(null) { }
 
         public sealed override long GetAvailableRAM() => 0;
 
@@ -16,7 +15,6 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime
 
         public sealed override bool IsLowRAM() => false;
 
-        public sealed override SuggestMemoryCleanupResponse SuggestMemoryCleanup() =>
-            SuggestMemoryCleanupResponse.Unknown;
+        public sealed override SuggestMemoryCleanupResponse SuggestMemoryCleanup() => Unknown;
     }
 }

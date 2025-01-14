@@ -1,4 +1,5 @@
 using AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android;
+using AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android.RAM;
 using TMPro;
 using UnityEngine;
 

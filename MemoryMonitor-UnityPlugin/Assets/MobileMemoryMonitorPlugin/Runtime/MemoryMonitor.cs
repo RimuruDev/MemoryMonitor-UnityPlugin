@@ -1,5 +1,6 @@
-using AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android;
 using UnityEngine;
+using AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android.RAM;
+using AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android.SDK;
 
 namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime
 {

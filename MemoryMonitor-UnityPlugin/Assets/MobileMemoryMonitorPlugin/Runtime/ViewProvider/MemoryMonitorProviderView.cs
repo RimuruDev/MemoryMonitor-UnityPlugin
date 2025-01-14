@@ -1,31 +1,8 @@
-using System;
-using AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android;
 using UnityEngine;
-using UnityEngine.Events;
+using AbyssMoth.MobileMemoryMonitorPlugin.Runtime.ViewProvider.Events;
 
-namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime
+namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.ViewProvider
 {
-    [Serializable]
-    public class MemoryMonitorEvent : UnityEvent { }
-
-    [Serializable]
-    public class MemoryMonitorLongEvent : UnityEvent<long> { }
-
-    [Serializable]
-    public class MemoryMonitorFloatEvent : UnityEvent<float> { }
-
-    [Serializable]
-    public class MemoryMonitorSuggestEvent : UnityEvent<SuggestMemoryCleanupResponse> { }
-
-    public enum MemoryMonitorUpdateRate
-    {
-        None = 0,
-        UpdateEvery1Second = 1,
-        UpdateEvery2Seconds = 2,
-        UpdateEvery5Seconds = 5,
-        UpdateEvery10Seconds = 10,
-    }
-
     public class MemoryMonitorProviderView : MonoBehaviour
     {
         [Header("Настройки обновления")]

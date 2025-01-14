@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android
 {
-    internal class MMMJavaBridge
+    internal class MMJavaBridge
     {
         internal const string UNITY_PLAYER = "com.unity3d.player.UnityPlayer";
         internal const string CURRENT_ACTIVITY = "currentActivity";
