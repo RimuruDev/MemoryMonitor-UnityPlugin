@@ -78,5 +78,55 @@ namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime
         /// </summary>
         public int GetSDKVersion() =>
             sdkMonitorProxy.GetSDKVersion();
+
+        #region :D Методы для удобной работы с памятью ;3
+
+        /// <summary>
+        /// Получает доступную оперативную память в мегабайтах.
+        /// </summary>
+        /// <returns>Доступная память в МБ.</returns>
+        public float GetAvailableRAMInMB()
+        {
+            var availableRAM = GetAvailableRAM();
+            
+            if (availableRAM <= 0)
+                return 0;
+            
+            return availableRAM / (1024f * 1024f);
+        }
+
+        /// <summary>
+        /// Получает доступную оперативную память в гигабайтах.
+        /// </summary>
+        /// <returns>Доступная память в ГБ.</returns>
+        public float GetAvailableRAMInGB()
+        {
+            var availableRAM = GetAvailableRAM();
+            
+            if (availableRAM <= 0)
+                return 0;
+            
+            return availableRAM / 1024f;
+        }
+
+        /// <summary>
+        /// Получает доступную оперативную память в строковом формате с единицами.
+        /// </summary>
+        /// <returns>Доступная память как строка с единицами.</returns>
+        public string GetAvailableRAMAsString()
+        {
+            return $"{GetAvailableRAMInGB():F2} GB";
+        }
+
+        /// <summary>
+        /// Получает процент доступной оперативной памяти как целое число.
+        /// </summary>
+        /// <returns>Процент доступной памяти как целое число.</returns>
+        public int GetAvailableRAMPercentageAsInt()
+        {
+            return Mathf.FloorToInt(GetAvailableRAMPercentage());
+        }
+
+        #endregion
     }
 }
