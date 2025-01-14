@@ -1,7 +1,7 @@
 using AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android.SDK;
 using static AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android.SDK.FeatureSupportResponse;
 
-namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Dummy
+namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Factory.Dummy
 {
     public class NullSDKMonitorClientProxy : SDKMonitorClientProxy
     {

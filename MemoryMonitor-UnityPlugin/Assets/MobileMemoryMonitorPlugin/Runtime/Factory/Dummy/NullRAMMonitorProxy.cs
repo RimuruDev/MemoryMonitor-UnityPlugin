@@ -1,7 +1,7 @@
 using AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android.RAM;
 using static AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Android.RAM.SuggestMemoryCleanupResponse;
 
-namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Dummy
+namespace AbyssMoth.MobileMemoryMonitorPlugin.Runtime.Factory.Dummy
 {
     public class NullRAMMonitorProxy : RAMMonitorProxy
     {
